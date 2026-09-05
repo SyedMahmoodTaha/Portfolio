@@ -117,11 +117,24 @@ function Projects() {
 }
 
 function About() {
-  return <section className="about shell"><div className="about-intro"><p className="eyebrow"><span>01</span> About me</p><h1>Curious About<br /><em>How Things Work.</em></h1><p className="intro">I’m Syed Mahmood Taha, a software developer from Bangalore who likes turning practical problems into clear, dependable products.</p><a className="contact-button" href="mailto:s.m.taha2@gmail.com">Let’s talk <span>↗</span></a></div><div className="about-grid"><div className="about-block"><p className="eyebrow">What I care about</p><h2>Useful software,<br /><em>made thoughtfully.</em></h2><p>I enjoy working across the interface and the system behind it, from shaping a calm user experience to making the underlying logic reliable.</p></div><div className="about-block"><p className="eyebrow">Working with</p><div className="about-list"><div><span>Languages</span><b>Java · C++ · JavaScript</b></div><div><span>Systems</span><b>React · Node · SQLite</b></div><div><span>Currently</span><b>Building POS tools</b></div></div></div></div><div className="about-tools"><ContactPanel /><AboutChat /></div></section>
+  return <section className="about shell"><div className="about-intro"><p className="eyebrow"><span>01</span> About me</p><h1>Curious About<br /><em>How Things Work.</em></h1><p className="intro">I’m Syed Mahmood Taha, a software developer from Bangalore who likes turning practical problems into clear, dependable products.</p><a className="contact-button" href="mailto:s.m.taha2@gmail.com">Let’s talk <span>↗</span></a></div><div className="about-grid"><div className="about-block"><p className="eyebrow">What I care about</p><h2>Useful software,<br /><em>made thoughtfully.</em></h2><p>I enjoy working across the interface and the system behind it, from shaping a calm user experience to making the underlying logic reliable.</p></div><div className="about-block"><p className="eyebrow">Working with</p><div className="about-list"><div><span>Languages</span><b>Java · C++ · JavaScript</b></div><div><span>Systems</span><b>React · Node · SQLite</b></div><div><span>Currently</span><b>Building POS tools</b></div></div></div></div><div className="about-tools"><ContactPanel /><AboutChat /></div><VisitorContact /></section>
 }
 
 function ContactPanel() {
   return <div className="contact-panel"><p className="eyebrow">Contact me</p><h2>Let’s make<br /><em>something useful.</em></h2><div className="contact-list"><div><span>Full name</span><b>Syed Mahmood Taha</b></div><div><span>Email</span><b><a href="mailto:s.m.taha2@gmail.com">s.m.taha2@gmail.com</a></b></div><div><span>Phone</span><b><a href="tel:+917204584680">+91 72045 84680</a></b></div><div><span>Based in</span><b>Bangalore, India</b></div></div></div>
+}
+
+function VisitorContact() {
+  const [sent, setSent] = useState(false)
+  const submit = (event) => {
+    event.preventDefault()
+    const form = new FormData(event.currentTarget)
+    const subject = encodeURIComponent(`Portfolio contact from ${form.get('name')}`)
+    const body = encodeURIComponent(`Name: ${form.get('name')}\nEmail: ${form.get('email')}\nPhone: ${form.get('phone') || 'Not provided'}\n\nMessage:\n${form.get('message')}`)
+    window.location.href = `mailto:s.m.taha2@gmail.com?subject=${subject}&body=${body}`
+    setSent(true)
+  }
+  return <div className="visitor-contact"><div><p className="eyebrow">Want to work together?</p><h2>Leave your<br /><em>details.</em></h2><p className="intro">Send your contact details and a note. Your email app will open with everything ready to send.</p></div><form className="visitor-form" onSubmit={submit}><label>Full name<input name="name" required placeholder="Your name" /></label><label>Email<input name="email" type="email" required placeholder="you@example.com" /></label><label>Phone <span>(optional)</span><input name="phone" type="tel" placeholder="Your phone number" /></label><label>Message<textarea name="message" required rows="4" placeholder="What would you like to discuss?" /></label><button className="contact-button" type="submit">Send details <span>↗</span></button>{sent && <p className="form-note">Your email app should open with the message prepared.</p>}</form></div>
 }
 
 function AboutChat() {
@@ -129,6 +142,11 @@ function AboutChat() {
   const [messages, setMessages] = useState([{ from: 'bot', text: 'Ask me about Syed, his work, or how to get in touch.' }])
   const answer = (value) => {
     const normalized = value.toLowerCase()
+    const allKnownProjects = [...projects, ...localProjects]
+    const mentionedProject = allKnownProjects.find((project) => normalized.includes(project.title.toLowerCase()) || normalized.includes(project.id))
+    if (normalized.includes('full name') || normalized.includes('who is syed') || normalized.includes('your name')) return 'Syed’s full name is Syed Mahmood Taha.'
+    if (mentionedProject) return `${mentionedProject.title} is a ${mentionedProject.type.toLowerCase()} from ${mentionedProject.year}. It uses ${mentionedProject.stack}. ${mentionedProject.description}`
+    if (normalized.includes('other project') || normalized.includes('projects') || normalized.includes('what project')) return `Syed’s projects include ${allKnownProjects.map((project) => project.title).join(', ')}. Ask me about any one of them for more details.`
     if (normalized.includes('resume') || normalized.includes('cv')) return 'The resume will be available here soon. You can contact Syed directly in the meantime.'
     if (normalized.includes('current') || normalized.includes('working') || normalized.includes('project')) return 'Syed is currently working on POS, a point-of-sale application. View the repository on GitHub from the Projects page.'
     if (normalized.includes('email') || normalized.includes('mail') || normalized.includes('contact')) return 'You can reach Syed at s.m.taha2@gmail.com or +91 72045 84680.'
