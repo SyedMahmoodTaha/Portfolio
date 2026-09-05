@@ -41,7 +41,7 @@ const localProjects = [
     title: 'Attendance System',
     type: 'Desktop application',
     year: '2025',
-    description: 'A Java desktop attendance system with SQLite persistence, exports, and email support.',
+    description: 'A Java desktop attendance system with SQLite persistence, exports, and email support. Username:admin Password:admin123, Username:owner password:owner123',
     stack: 'Java / Swing / SQLite / Jakarta Mail',
     path: '/Users/d87/Downloads/Projects/Attendance(Java)/AFL/AFLV(0.1)',
     command: './run.sh',
@@ -101,7 +101,7 @@ function navigate(event, path) {
 }
 
 function Header({ path }) {
-  return <nav className="nav shell"><a className="wordmark" href="#/" onClick={(event) => navigate(event, '/')}><span>D</span>87</a><div className="nav-links"><a className={path === '/' ? 'active' : ''} href="#/" onClick={(event) => navigate(event, '/')}>Home</a><a className={path === '/projects' ? 'active' : ''} href="#/projects" onClick={(event) => navigate(event, '/projects')}>Projects</a></div><a className="availability" href="mailto:s.m.taha2@gmail.com"><i /> Available for work</a></nav>
+  return <nav className="nav shell"><a className="wordmark" href="#/" onClick={(event) => navigate(event, '/')}><span>D</span>87</a><div className="nav-links"><a className={path === '/' ? 'active' : ''} href="#/" onClick={(event) => navigate(event, '/')}>Home</a><a className={path === '/projects' ? 'active' : ''} href="#/projects" onClick={(event) => navigate(event, '/projects')}>Projects</a><a className={path === '/about' ? 'active' : ''} href="#/about" onClick={(event) => navigate(event, '/about')}>About Me</a></div><a className="availability" href="mailto:s.m.taha2@gmail.com"><i /> Available for work</a></nav>
 }
 
 function Home({ onProjects }) {
@@ -116,11 +116,15 @@ function Projects() {
   return <section className="projects shell"><div className="projects-intro"><p className="eyebrow"><span>01</span> Selected projects</p><h1>Built To Be<br /><em>Used.</em></h1><p className="intro">Select A Project To Inspect The Live Preview, The Thinking Behind It, And The Technology Underneath.</p><div className="current-project"><p className="eyebrow">Currently working on</p><a href="https://github.com/SyedMahmoodTaha/POS_APP" target="_blank" rel="noreferrer"><strong>POS</strong><span>View repository ↗</span></a></div></div><div className="project-layout"><div className="preview-panel"><div className="preview-top"><span><i /> {isDesktopProject ? 'Local runtime' : 'Live preview'}</span><span>{isDesktopProject ? selected.runtime : `localhost / ${selected.id}`}</span></div>{isDesktopProject ? <DesktopPreview project={selected} /> : <iframe title={`${selected.title} live preview`} srcDoc={selected.preview} />}</div><div className="project-list"><p className="list-label">Explore work <span>({allProjects.length})</span></p>{allProjects.map((project) => <div className="project-row-wrap" key={project.id}><button className={`project-row ${project.id === selectedId ? 'selected' : ''}`} onClick={() => setSelectedId(project.id)}><span className="project-number">{project.number}</span><span className="project-info"><strong>{project.title}</strong><small>{project.type}</small></span><span className="project-year">{project.year}</span><span className="project-arrow">↗</span></button><a className="project-repo-link" href={project.link} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} GitHub repository`}>↗</a></div>)}<div className="selected-details"><p className="eyebrow">About this project</p><h2>{selected.title}</h2><p>{selected.description}</p><div className="stack"><span>Built with</span><b>{selected.stack}</b></div><a className="project-link" href={selected.link} target="_blank" rel="noreferrer">View source on GitHub <span>↗</span></a></div></div></div></section>
 }
 
+function About() {
+  return <section className="about shell"><div className="about-intro"><p className="eyebrow"><span>01</span> About me</p><h1>Curious About<br /><em>How Things Work.</em></h1><p className="intro">I’m Syed Mahmood Taha, a software developer from Bangalore who likes turning practical problems into clear, dependable products.</p><a className="contact-button" href="mailto:s.m.taha2@gmail.com">Let’s talk <span>↗</span></a></div><div className="about-grid"><div className="about-block"><p className="eyebrow">What I care about</p><h2>Useful software,<br /><em>made thoughtfully.</em></h2><p>I enjoy working across the interface and the system behind it, from shaping a calm user experience to making the underlying logic reliable.</p></div><div className="about-block"><p className="eyebrow">Working with</p><div className="about-list"><div><span>Languages</span><b>Java · C++ · JavaScript</b></div><div><span>Systems</span><b>React · Node · SQLite</b></div><div><span>Currently</span><b>Building POS tools</b></div></div></div></div></section>
+}
+
 function App() {
   const [path, setPath] = useState(window.location.hash.slice(1) || '/')
   useEffect(() => { const updatePath = () => setPath(window.location.hash.slice(1) || '/'); window.addEventListener('hashchange', updatePath); return () => window.removeEventListener('hashchange', updatePath) }, [])
   const goProjects = (event) => navigate(event, '/projects')
-  return <main><Header path={path} />{path === '/projects' ? <Projects /> : <Home onProjects={goProjects} />}</main>
+  return <main><Header path={path} />{path === '/projects' ? <Projects /> : path === '/about' ? <About /> : <Home onProjects={goProjects} />}</main>
 }
 
 export default App
