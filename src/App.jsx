@@ -46,7 +46,7 @@ const localProjects = [
     path: '/Users/d87/Downloads/Projects/Attendance(Java)/AFL/AFLV(0.1)',
     command: './run.sh',
     runtime: 'Java 8+ · macOS / Linux',
-    link: 'https://github.com/SyedMahmoodTaha/POS_APP',
+    link: 'https://github.com/SyedMahmoodTaha/Attendance_java',
   },
   {
     id: 'inventory-cpp',
@@ -59,7 +59,7 @@ const localProjects = [
     path: '/Users/d87/Downloads/Projects/Inventory(Cpp)/AppV1',
     command: './finalv1mac/Inventory_MacOs/inventory',
     runtime: 'macOS arm64 · Windows installer included',
-    link: 'https://github.com/SyedMahmoodTaha/POS_APP',
+    link: 'https://github.com/SyedMahmoodTaha/Inventory',
     preview: `<style>*{box-sizing:border-box}body{margin:0;background:#edf0e9;color:#16231f;font:14px Arial,sans-serif}.bar{height:58px;border-bottom:1px solid #cdd5c9;display:flex;align-items:center;justify-content:space-between;padding:0 24px}.brand{font-size:18px;font-weight:700}.brand span{color:#d7654e}.tag{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#60756b}.body{padding:28px}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#72857b}.heading{font-size:30px;letter-spacing:-1.5px;margin:10px 0 24px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat,.table{background:#fff;border:1px solid #d6ded3;border-radius:4px;padding:16px}.stat small{color:#72857b}.stat b{display:block;font-size:24px;margin-top:12px}.table{margin-top:12px}.row{display:grid;grid-template-columns:1fr 80px 80px;padding:12px 0;border-bottom:1px solid #e3e8e1;font-size:12px}.row:last-child{border:0}.head{color:#72857b;font-size:10px;text-transform:uppercase}.add{margin-top:17px;background:#172f29;color:#f1f5ed;border:0;padding:11px 15px;border-radius:3px;cursor:pointer}</style><div class='bar'><div class='brand'>inventory<span>.</span></div><div class='tag'>Browser demo · C++ edition</div></div><div class='body'><div class='eyebrow'>Stock control</div><div class='heading'>Inventory overview</div><div class='stats'><div class='stat'><small>Total items</small><b id='total'>24</b></div><div class='stat'><small>Low stock</small><b>03</b></div><div class='stat'><small>Categories</small><b>08</b></div></div><div class='table'><div class='row head'><span>Item</span><span>Stock</span><span>Status</span></div><div class='row'><span>Keyboard</span><span>18</span><span>Healthy</span></div><div class='row'><span>USB-C Hub</span><span>04</span><span>Low</span></div><div class='row'><span>Monitor Stand</span><span>09</span><span>Healthy</span></div><button class='add' onclick='document.getElementById("total").textContent=Number(document.getElementById("total").textContent)+1'>Add inventory item +</button></div></div>`,
   },
 ]
