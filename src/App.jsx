@@ -117,7 +117,34 @@ function Projects() {
 }
 
 function About() {
-  return <section className="about shell"><div className="about-intro"><p className="eyebrow"><span>01</span> About me</p><h1>Curious About<br /><em>How Things Work.</em></h1><p className="intro">I’m Syed Mahmood Taha, a software developer from Bangalore who likes turning practical problems into clear, dependable products.</p><a className="contact-button" href="mailto:s.m.taha2@gmail.com">Let’s talk <span>↗</span></a></div><div className="about-grid"><div className="about-block"><p className="eyebrow">What I care about</p><h2>Useful software,<br /><em>made thoughtfully.</em></h2><p>I enjoy working across the interface and the system behind it, from shaping a calm user experience to making the underlying logic reliable.</p></div><div className="about-block"><p className="eyebrow">Working with</p><div className="about-list"><div><span>Languages</span><b>Java · C++ · JavaScript</b></div><div><span>Systems</span><b>React · Node · SQLite</b></div><div><span>Currently</span><b>Building POS tools</b></div></div></div></div></section>
+  return <section className="about shell"><div className="about-intro"><p className="eyebrow"><span>01</span> About me</p><h1>Curious About<br /><em>How Things Work.</em></h1><p className="intro">I’m Syed Mahmood Taha, a software developer from Bangalore who likes turning practical problems into clear, dependable products.</p><a className="contact-button" href="mailto:s.m.taha2@gmail.com">Let’s talk <span>↗</span></a></div><div className="about-grid"><div className="about-block"><p className="eyebrow">What I care about</p><h2>Useful software,<br /><em>made thoughtfully.</em></h2><p>I enjoy working across the interface and the system behind it, from shaping a calm user experience to making the underlying logic reliable.</p></div><div className="about-block"><p className="eyebrow">Working with</p><div className="about-list"><div><span>Languages</span><b>Java · C++ · JavaScript</b></div><div><span>Systems</span><b>React · Node · SQLite</b></div><div><span>Currently</span><b>Building POS tools</b></div></div></div></div><div className="about-tools"><ContactPanel /><AboutChat /></div></section>
+}
+
+function ContactPanel() {
+  return <div className="contact-panel"><p className="eyebrow">Contact me</p><h2>Let’s make<br /><em>something useful.</em></h2><div className="contact-list"><div><span>Full name</span><b>Syed Mahmood Taha</b></div><div><span>Email</span><b><a href="mailto:s.m.taha2@gmail.com">s.m.taha2@gmail.com</a></b></div><div><span>Phone</span><b><a href="tel:+917204584680">+91 72045 84680</a></b></div><div><span>Based in</span><b>Bangalore, India</b></div></div></div>
+}
+
+function AboutChat() {
+  const [question, setQuestion] = useState('')
+  const [messages, setMessages] = useState([{ from: 'bot', text: 'Ask me about Syed, his work, or how to get in touch.' }])
+  const answer = (value) => {
+    const normalized = value.toLowerCase()
+    if (normalized.includes('resume') || normalized.includes('cv')) return 'The resume will be available here soon. You can contact Syed directly in the meantime.'
+    if (normalized.includes('current') || normalized.includes('working') || normalized.includes('project')) return 'Syed is currently working on POS, a point-of-sale application. View the repository on GitHub from the Projects page.'
+    if (normalized.includes('email') || normalized.includes('mail') || normalized.includes('contact')) return 'You can reach Syed at s.m.taha2@gmail.com or +91 72045 84680.'
+    if (normalized.includes('phone') || normalized.includes('number')) return 'Syed’s phone number is +91 72045 84680.'
+    if (normalized.includes('skill') || normalized.includes('tech') || normalized.includes('stack')) return 'Syed works with Java, C++, JavaScript, React, Node, SQLite, and PostgreSQL.'
+    if (normalized.includes('where') || normalized.includes('location') || normalized.includes('based')) return 'Syed is based in Bangalore, India.'
+    return 'I can tell you about Syed’s current project, skills, location, contact details, or resume.'
+  }
+  const ask = (event) => {
+    event.preventDefault()
+    const value = question.trim()
+    if (!value) return
+    setMessages((current) => [...current, { from: 'user', text: value }, { from: 'bot', text: answer(value) }])
+    setQuestion('')
+  }
+  return <div className="about-chat"><div className="chat-heading"><div><p className="eyebrow">Ask about me</p><h2>Profile assistant</h2></div><span className="chat-status"><i /> Online</span></div><div className="chat-messages">{messages.map((message, index) => <p className={`chat-message ${message.from}`} key={`${message.from}-${index}`}>{message.text}</p>)}</div><form className="chat-form" onSubmit={ask}><input value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="Ask a question..." aria-label="Ask about Syed" /><button type="submit" aria-label="Send question">↗</button></form></div>
 }
 
 function App() {
