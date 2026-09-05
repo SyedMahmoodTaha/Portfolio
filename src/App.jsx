@@ -2,36 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 const projects = [
-  {
-    id: 'north',
-    number: '01',
-    title: 'North / 24',
-    type: 'Product interface',
-    year: '2024',
-    description: 'A calm operations dashboard for teams making complex work feel simple.',
-    stack: 'React / TypeScript / CSS',
-    preview: `<style>*{box-sizing:border-box}body{margin:0;background:#eef0e9;color:#14221e;font:14px Arial,sans-serif}.top{height:54px;border-bottom:1px solid #cad0c5;display:flex;align-items:center;justify-content:space-between;padding:0 28px}.brand{font-weight:700;letter-spacing:-1px}.brand span{color:#7a9a46}.pill{background:#d8ef78;border-radius:99px;padding:8px 13px;font-size:11px}.layout{display:grid;grid-template-columns:190px 1fr;min-height:calc(100vh - 54px)}.side{border-right:1px solid #cad0c5;padding:30px 22px;color:#718078}.side strong{display:block;color:#14221e;margin-bottom:34px}.side div{padding:11px 0}.side .active{color:#14221e;font-weight:bold}.content{padding:30px}.kicker{color:#718078;font-size:11px;text-transform:uppercase;letter-spacing:1px}.h{font-size:34px;letter-spacing:-2px;margin:12px 0 30px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:#fff;border:1px solid #d8ddd4;padding:18px;border-radius:5px}.card b{font-size:25px;display:block;margin-top:16px}.chart{height:190px;margin-top:12px;background:linear-gradient(155deg,transparent 55%,#a1c856 56%,#a1c856 57%,transparent 58%),linear-gradient(20deg,transparent 46%,#bdd67a 47%,#bdd67a 48%,transparent 49%),#fff;position:relative}.chart:after{content:'activity';position:absolute;top:15px;left:15px;color:#718078;font-size:11px}</style><div class='top'><div class='brand'>north<span>/</span>24</div><div class='pill'>Live workspace</div></div><div class='layout'><aside class='side'><strong>Workspace</strong><div class='active'>Overview</div><div>Projects</div><div>People</div><div>Settings</div></aside><section class='content'><div class='kicker'>Tuesday, 24 September</div><div class='h'>Good morning, Alex.</div><div class='stats'><div class='card'>Open projects<b>12</b></div><div class='card'>On track<b>08</b></div><div class='card'>Hours saved<b>24h</b></div></div><div class='card chart'></div></section></div>`,
-  },
-  {
-    id: 'morrow',
-    number: '02',
-    title: 'Morrow Objects',
-    type: 'Commerce experience',
-    year: '2023',
-    description: 'A tactile storefront for small-batch objects, built around browsing slowly.',
-    stack: 'React / Shopify / Motion',
-    preview: `<style>*{box-sizing:border-box}body{margin:0;background:#e7dfcf;color:#25231e;font:14px Georgia,serif}.nav{height:64px;border-bottom:1px solid #bdb4a2;display:flex;justify-content:space-between;align-items:center;padding:0 32px}.logo{font-size:21px}.links{font:11px Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}.hero{padding:45px 32px}.eyebrow{font:10px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase}.headline{font-size:clamp(42px,7vw,80px);line-height:.9;max-width:600px;margin:28px 0 60px}.headline i{color:#886d42}.items{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.item{height:230px;background:#d3c4a9;display:flex;align-items:center;justify-content:center;font-size:24px}.item:nth-child(2){background:#c0c2b6}.item:nth-child(3){background:#d9b29b}</style><nav class='nav'><div class='logo'>morrow</div><div class='links'>Objects &nbsp;&nbsp; About &nbsp;&nbsp; Bag (0)</div></nav><main class='hero'><div class='eyebrow'>Small objects for a slower life</div><div class='headline'>Things made to be<br /><i>lived with.</i></div><div class='items'><div class='item'>01</div><div class='item'>02</div><div class='item'>03</div></div></main>`,
-  },
-  {
-    id: 'orbit',
-    number: '03',
-    title: 'Orbit Commons',
-    type: 'Community platform',
-    year: '2023',
-    description: 'A warmer way for independent makers to find each other and collaborate.',
-    stack: 'Next.js / Node / PostgreSQL',
-    preview: `<style>*{box-sizing:border-box}body{margin:0;background:#d8e5e9;color:#173d4a;font:14px Arial,sans-serif}.nav{display:flex;justify-content:space-between;padding:24px 30px;font-size:12px;letter-spacing:1px}.circle{width:8px;height:8px;background:#df7354;border-radius:50%;display:inline-block;margin-right:8px}.hero{padding:50px 30px;max-width:780px}.h{font-size:clamp(50px,8vw,94px);letter-spacing:-6px;line-height:.88;font-weight:700}.h span{color:#df7354}.sub{max-width:320px;line-height:1.5;margin-top:35px;color:#52717b}.button{display:inline-block;margin-top:30px;background:#173d4a;color:#e7f1ef;padding:14px 18px;border-radius:99px;font-size:12px}.orbit{position:absolute;right:13%;top:25%;width:190px;height:190px;border:1px solid #8dafb6;border-radius:50%}.orbit:after{content:'';position:absolute;inset:35px;border:1px solid #8dafb6;border-radius:50%}</style><nav class='nav'><div><span class='circle'></span>ORBIT COMMONS</div><div>Explore &nbsp; Join the orbit ↗</div></nav><main class='hero'><div class='h'>Find your<br /><span>common.</span></div><div class='sub'>A place for independent people to share work, trade notes, and make better things together.</div><div class='button'>Enter the commons ↗</div></main><div class='orbit'></div>`,
-  },
+  
 ]
 
 const localProjects = [
@@ -117,7 +88,7 @@ function Projects() {
 }
 
 function About() {
-  return <section className="about shell"><div className="about-intro"><p className="eyebrow"><span>01</span> About me</p><h1>Curious About<br /><em>How Things Work.</em></h1><p className="intro">I’m Syed Mahmood Taha, a software developer from Bangalore who likes turning practical problems into clear, dependable products.</p><a className="contact-button" href="mailto:s.m.taha2@gmail.com">Let’s talk <span>↗</span></a></div><div className="about-grid"><div className="about-block"><p className="eyebrow">What I care about</p><h2>Useful software,<br /><em>made thoughtfully.</em></h2><p>I enjoy working across the interface and the system behind it, from shaping a calm user experience to making the underlying logic reliable.</p></div><div className="about-block"><p className="eyebrow">Working with</p><div className="about-list"><div><span>Languages</span><b>Java · C++ · JavaScript</b></div><div><span>Systems</span><b>React · Node · SQLite</b></div><div><span>Currently</span><b>Building POS tools</b></div></div></div></div><div className="about-tools"><ContactPanel /><AboutChat /></div><VisitorContact /></section>
+  return <section className="about shell"><div className="about-intro"><p className="eyebrow"><span>01</span> About me</p><h1>Curious About<br /><em>How Things Work.</em></h1><p className="intro">I’m Syed Mahmood Taha, a software developer from Bangalore who likes turning practical problems into clear, dependable products.</p><a className="contact-button" href="mailto:s.m.taha2@gmail.com">Let’s talk <span>↗</span></a></div><div className="about-grid"><div className="about-block"><p className="eyebrow">What I care about</p><h2>Useful software,<br /><em>made thoughtfully.</em></h2><p>I enjoy working across the interface and the system behind it, from shaping a calm user experience to making the underlying logic reliable.</p></div><div className="about-block"><p className="eyebrow">Working with</p><div className="about-list"><div><span>Languages</span><b>Java · C++ · JavaScript</b></div><div><span>Systems</span><b>React · Node · SQLite</b></div><div><span>Currently</span><b>Building POS tools</b></div></div></div></div><div className="about-tools"><ContactPanel /></div><VisitorContact /></section>
 }
 
 function ContactPanel() {
@@ -135,34 +106,6 @@ function VisitorContact() {
     setSent(true)
   }
   return <div className="visitor-contact"><div><p className="eyebrow">Want to work together?</p><h2>Leave your<br /><em>details.</em></h2><p className="intro">Send your contact details and a note. Your email app will open with everything ready to send.</p></div><form className="visitor-form" onSubmit={submit}><label>Full name<input name="name" required placeholder="Your name" /></label><label>Email<input name="email" type="email" required placeholder="you@example.com" /></label><label>Phone <span>(optional)</span><input name="phone" type="tel" placeholder="Your phone number" /></label><label>Message<textarea name="message" required rows="4" placeholder="What would you like to discuss?" /></label><button className="contact-button" type="submit">Send details <span>↗</span></button>{sent && <p className="form-note">Your email app should open with the message prepared.</p>}</form></div>
-}
-
-function AboutChat() {
-  const [question, setQuestion] = useState('')
-  const [messages, setMessages] = useState([{ from: 'bot', text: 'Ask me about Syed, his work, or how to get in touch.' }])
-  const answer = (value) => {
-    const normalized = value.toLowerCase()
-    const allKnownProjects = [...projects, ...localProjects]
-    const mentionedProject = allKnownProjects.find((project) => normalized.includes(project.title.toLowerCase()) || normalized.includes(project.id))
-    if (normalized.includes('full name') || normalized.includes('who is syed') || normalized.includes('your name')) return 'Syed’s full name is Syed Mahmood Taha.'
-    if (mentionedProject) return `${mentionedProject.title} is a ${mentionedProject.type.toLowerCase()} from ${mentionedProject.year}. It uses ${mentionedProject.stack}. ${mentionedProject.description}`
-    if (normalized.includes('other project') || normalized.includes('projects') || normalized.includes('what project')) return `Syed’s projects include ${allKnownProjects.map((project) => project.title).join(', ')}. Ask me about any one of them for more details.`
-    if (normalized.includes('resume') || normalized.includes('cv')) return 'The resume will be available here soon. You can contact Syed directly in the meantime.'
-    if (normalized.includes('current') || normalized.includes('working') || normalized.includes('project')) return 'Syed is currently working on POS, a point-of-sale application. View the repository on GitHub from the Projects page.'
-    if (normalized.includes('email') || normalized.includes('mail') || normalized.includes('contact')) return 'You can reach Syed at s.m.taha2@gmail.com or +91 72045 84680.'
-    if (normalized.includes('phone') || normalized.includes('number')) return 'Syed’s phone number is +91 72045 84680.'
-    if (normalized.includes('skill') || normalized.includes('tech') || normalized.includes('stack')) return 'Syed works with Java, C++, JavaScript, React, Node, SQLite, and PostgreSQL.'
-    if (normalized.includes('where') || normalized.includes('location') || normalized.includes('based')) return 'Syed is based in Bangalore, India.'
-    return 'I can tell you about Syed’s current project, skills, location, contact details, or resume.'
-  }
-  const ask = (event) => {
-    event.preventDefault()
-    const value = question.trim()
-    if (!value) return
-    setMessages((current) => [...current, { from: 'user', text: value }, { from: 'bot', text: answer(value) }])
-    setQuestion('')
-  }
-  return <div className="about-chat"><div className="chat-heading"><div><p className="eyebrow">Ask about me</p><h2>Profile assistant</h2></div><span className="chat-status"><i /> Online</span></div><div className="chat-messages">{messages.map((message, index) => <p className={`chat-message ${message.from}`} key={`${message.from}-${index}`}>{message.text}</p>)}</div><form className="chat-form" onSubmit={ask}><input value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="Ask a question..." aria-label="Ask about Syed" /><button type="submit" aria-label="Send question">↗</button></form></div>
 }
 
 function App() {
